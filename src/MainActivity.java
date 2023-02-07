@@ -21,5 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textViewDate = findViewById(R.id.textView);
         textViewDate.setText(currentDate);
+
+        TextView textViewDate2 = findViewById(R.id.textView7);
+        textViewDate2.setText("Last Updated: " + currentDate);
     }
 }
