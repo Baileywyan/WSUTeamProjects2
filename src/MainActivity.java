@@ -69,6 +69,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel channel = new NotificationChannel("myChannel", "My Channel", NotificationManager.IMPORTANCE_DEFAULT);
+
+                NotificationManager manager = getSystemService(NotificationManager.class);
+                manager.createNotificationChannel(channel);
+            }
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "myChannel")
+                .setSmallIcon(android.R.drawable.stat_notify_sync)
+                .setContentTitle("Alert")
+                .setContentText("Check the tank!");
+
+            notification = builder.build();
+
+            notificationManagerCompat = NotificationManagerCompat.from(this);
+        }
+
+    public void pushAlert()
+    {
+        System.out.println("pushAlert()");
+        notificationManagerCompat.notify(1, notification);
 
     }
 
@@ -125,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         if(pHNum > 6.1 || tempNum > 81)
         {
             System.out.println("AHHHH");
+            pushAlert();
         }
 
 
